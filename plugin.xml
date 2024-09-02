@@ -1,7 +1,31 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cn.yingzhichu.cordova.gmusic" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>gpluginmusic</name>
-    <js-module name="gpluginmusic" src="www/gpluginmusic.js">
-        <clobbers target="cordova.plugins.gpluginmusic" />
+    <name>GPluginMusic</name>
+    <js-module name="gmusic" src="www/gpluginmusic.js">
+        <clobbers target="gmusic" />
     </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="GPluginMusic">
+                <param name="android-package" value="cn.yingzhichu.cordova.gmusic.GPluginMusic" />
+            </feature>
+        </config-file>
+        <config-file parent="/manifest/application" target="AndroidManifest.xml" >
+            <service
+            android:name="cn.yingzhichu.cordova.gmusic.MusicService"
+            android:enabled="true"
+            android:exported="true"></service>
+        </config-file>
+        <source-file src="src/android/GPluginMusic.java" target-dir="src/cn/yingzhichu/cordova/gmusic/GPluginMusic" />
+        <source-file src="src/android/MusicItem.java" target-dir="src/cn/yingzhichu/cordova/gmusic/MusicItem" />
+        <source-file src="src/android/MusicService.java" target-dir="src/cn/yingzhichu/cordova/gmusic/MusicService" />
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="gpluginmusic">
+                <param name="ios-package" value="gpluginmusic" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/gpluginmusic.m" />
+    </platform>
 </plugin>
