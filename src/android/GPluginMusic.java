@@ -41,6 +41,9 @@ public class GPluginMusic extends CordovaPlugin {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
                 if (msg.what == 333) {
+                    if(timerCallback == null){
+                        return true;
+                    }
                     Bundle data = msg.getData();
                     JSONObject ret = new JSONObject();
                     try {
